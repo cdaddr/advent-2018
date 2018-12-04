@@ -1,14 +1,15 @@
-use std::io::prelude::*;
-use std::io::{BufRead, BufReader, Result};
-use std::fs::File;
-use std::path::Path;
-use std::error::Error;
+#![allow(dead_code)]
 
-fn main() -> Result<()>{
+use std::error::Error;
+use std::fs::File;
+use std::io::{BufRead, BufReader, Result};
+use std::path::Path;
+
+fn main() -> Result<()> {
     let mut freq = 0;
     let path = Path::new("input.txt");
-    let mut file = match File::open(path) {
-        Err(why) => panic!("can't open {}: {}", path.display(), why.description() ),
+    match File::open(path) {
+        Err(why) => panic!("can't open {}: {}", path.display(), why.description()),
         Ok(file) => {
             for line in BufReader::new(file).lines().filter_map(|res| res.ok()) {
                 let (sign, num) = if &line[0..1] == "-" {
