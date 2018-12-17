@@ -7,4 +7,10 @@
  * in the user guide at https://docs.gradle.org/5.0/userguide/multi_project_builds.html
  */
 
-rootProject.name = "01"
+rootProject.name = "advent2018"
+file(".").eachDir { dir ->
+    if (dir.name.startsWith("day")) {
+        include dir.name
+        project(":${dir.name}").projectDir = dir
+    }
+}

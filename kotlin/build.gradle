@@ -1,0 +1,22 @@
+plugins {
+    id("org.jetbrains.kotlin.jvm").version("1.3.11")
+}
+
+subprojects {
+    apply plugin: "kotlin"
+    apply plugin: "application"
+    mainClassName = "SolutionKt"
+    repositories { jcenter() }
+    sourceSets {
+        main.kotlin.srcDirs += "src"
+    }
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-stdlib:1.3.11"
+    }
+    task hello { task ->
+        println task.project.name
+        println task.project.projectDir
+    }
+}
+
+
